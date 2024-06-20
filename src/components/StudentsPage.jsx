@@ -1,7 +1,11 @@
-// StudentsPage.jsx
-import React from 'react';
+// StudentsPage.js
+import React from "react";
+// import useSelectedStudents from "./SelectedStudentsContext";
+import { useSelectedStudents } from "./SelectedStudentsContext";
 
-const StudentsPage = ({ students }) => {
+const StudentsPage = () => {
+  const { selectedStudents } = useSelectedStudents();
+
   return (
     <div className="mt-8">
       <h2 className="text-2xl font-bold mb-4">All Registered Students</h2>
@@ -15,9 +19,14 @@ const StudentsPage = ({ students }) => {
             </tr>
           </thead>
           <tbody className="text-gray-600 text-sm font-light">
-            {students.map(student => (
-              <tr key={student.id} className="border-b border-gray-200 hover:bg-gray-100">
-                <td className="py-3 px-6 text-left whitespace-nowrap">{student.name}</td>
+            {selectedStudents.map((student) => (
+              <tr
+                key={student.id}
+                className="border-b border-gray-200 hover:bg-gray-100"
+              >
+                <td className="py-3 px-6 text-left whitespace-nowrap">
+                  {student.name}
+                </td>
                 <td className="py-3 px-6 text-left">{student.company}</td>
                 <td className="py-3 px-6 text-left">{student.year}</td>
               </tr>

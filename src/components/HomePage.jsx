@@ -1,24 +1,42 @@
-// HomePage.jsx
-import React, { useState } from 'react';
+// HomePage.js
+import React, { useState } from "react";
+// import useSelectedStudents from "./SelectedStudentsContext";
+import { useSelectedStudents } from "./SelectedStudentsContext";
 
 const HomePage = ({ students, companies, years }) => {
   const [showRoundTwoColumn, setShowRoundTwoColumn] = useState(false);
-  const [selectedCompany, setSelectedCompany] = useState('');
-  const [selectedYear, setSelectedYear] = useState('');
-  const [selectedTimes, setSelectedTimes] = useState('');
+  const [selectedCompany, setSelectedCompany] = useState("");
+  const [selectedYear, setSelectedYear] = useState("");
+  const [selectedTimes, setSelectedTimes] = useState("");
+  const { addStudents } = useSelectedStudents();
+  const [selectedStudentIds, setSelectedStudentIds] = useState([]);
 
   const toggleRoundTwoColumn = () => {
     setShowRoundTwoColumn(!showRoundTwoColumn);
   };
 
-  // Filtering function based on selected dropdown values
-  const filteredStudents = students.filter(student => {
+  const handleAdd = () => {
+    const selectedStudents = students.filter((student) =>
+      selectedStudentIds.includes(student.id)
+    );
+    addStudents(selectedStudents);
+  };
+
+  const filteredStudents = students.filter((student) => {
     return (
-      (selectedCompany === '' || student.company === selectedCompany) &&
-      (selectedYear === '' || student.year === selectedYear) &&
-      (selectedTimes === '' || student.times === parseInt(selectedTimes))
+      (selectedCompany === "" || student.company === selectedCompany) &&
+      (selectedYear === "" || student.year === selectedYear) &&
+      (selectedTimes === "" || student.times === parseInt(selectedTimes))
     );
   });
+
+  const handleCheckboxChange = (studentId) => {
+    setSelectedStudentIds((prevSelected) =>
+      prevSelected.includes(studentId)
+        ? prevSelected.filter((id) => id !== studentId)
+        : [...prevSelected, studentId]
+    );
+  };
 
   return (
     <div className="mt-8">
@@ -27,8 +45,16 @@ const HomePage = ({ students, companies, years }) => {
         className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mb-4"
         onClick={toggleRoundTwoColumn}
       >
-        {showRoundTwoColumn ? 'Hide Round Two' : 'Add Round Two'}
+        {showRoundTwoColumn ? "Hide Round Two" : "Add Round Two"}
       </button>
+      {showRoundTwoColumn && (
+        <button
+          onClick={handleAdd}
+          className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mb-4 float-end"
+        >
+          Add Students
+        </button>
+      )}
       <div className="flex space-x-4 mb-4">
         <div className="w-1/3">
           <label className="block">
@@ -36,11 +62,13 @@ const HomePage = ({ students, companies, years }) => {
             <select
               className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring focus:ring-blue-500 focus:ring-opacity-50"
               value={selectedCompany}
-              onChange={e => setSelectedCompany(e.target.value)}
+              onChange={(e) => setSelectedCompany(e.target.value)}
             >
               <option value="">All</option>
-              {companies.map(company => (
-                <option key={company} value={company}>{company}</option>
+              {companies.map((company) => (
+                <option key={company} value={company}>
+                  {company}
+                </option>
               ))}
             </select>
           </label>
@@ -51,11 +79,13 @@ const HomePage = ({ students, companies, years }) => {
             <select
               className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring focus:ring-blue-500 focus:ring-opacity-50"
               value={selectedYear}
-              onChange={e => setSelectedYear(e.target.value)}
+              onChange={(e) => setSelectedYear(e.target.value)}
             >
               <option value="">All</option>
-              {years.map(year => (
-                <option key={year} value={year}>{year}</option>
+              {years.map((year) => (
+                <option key={year} value={year}>
+                  {year}
+                </option>
               ))}
             </select>
           </label>
@@ -66,7 +96,7 @@ const HomePage = ({ students, companies, years }) => {
             <select
               className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring focus:ring-blue-500 focus:ring-opacity-50"
               value={selectedTimes}
-              onChange={e => setSelectedTimes(e.target.value)}
+              onChange={(e) => setSelectedTimes(e.target.value)}
             >
               <option value="">All</option>
               <option value="1">1</option>
@@ -89,13 +119,24 @@ const HomePage = ({ students, companies, years }) => {
             </tr>
           </thead>
           <tbody className="text-gray-600 text-sm font-light">
-            {filteredStudents.map(student => (
-              <tr key={student.id} className="border-b border-gray-200 hover:bg-gray-100">
-                <td className="py-3 px-6 text-left whitespace-nowrap">{student.name}</td>
+            {filteredStudents.map((student) => (
+              <tr
+                key={student.id}
+                className="border-b border-gray-200 hover:bg-gray-100"
+              >
+                <td className="py-3 px-6 text-left whitespace-nowrap">
+                  {student.name}
+                </td>
                 <td className="py-3 px-6 text-left">{student.company}</td>
                 <td className="py-3 px-6 text-left">{student.year}</td>
                 {showRoundTwoColumn && (
-                  <td className="py-3 px-6 text-left"><input type="checkbox" /></td>
+                  <td className="py-3 px-6 text-left">
+                    <input
+                      type="checkbox"
+                      onChange={() => handleCheckboxChange(student.id)}
+                      checked={selectedStudentIds.includes(student.id)}
+                    />
+                  </td>
                 )}
               </tr>
             ))}
