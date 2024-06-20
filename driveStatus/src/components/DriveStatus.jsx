@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import RegistrationDetails from "./RegistrationDetails";
 
 const DriveStatus = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -87,6 +88,7 @@ const DriveStatus = () => {
           </select>
         </div>
       </div>
+      <RegistrationDetails />
     </div>
   );
 };
