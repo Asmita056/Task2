@@ -7,13 +7,16 @@ import "./index.css";
 import { SelectedStudentsProvider } from "./components/SelectedStudentsContext";
 
 const App = () => {
+
   const students = [
-    { id: 1, company: "Company A", year: 2023, times: 1 },
-    { id: 2, company: "Company A", year: 2022, times: 2 },
-    { id: 3, company: "Company B", year: 2024, times: 3 },
-    { id: 4, company: "Company C", year: 2022, times: 2 },
-    { id: 5, company: "Company B", year: 2021, times: 4 },
-  ];
+    { id: 1, TPOID : '0012', name: 'John Doe',collegeid: 'vu2f2122017', branch: "Computer Science",  company: "Company A", mobileNumber: "123-456-7890", year: 2024, times: 1,   },
+    { id: 2, TPOID : '0023', name: 'James Bond',collegeid: 'vu2f2122017', branch: "Computer Science",  company: "Company B", mobileNumber: "123-456-7890", year: 2023, times: 3,   },
+    { id: 3, TPOID : '0056', name: 'Krish Joel',collegeid: 'vu2f2122017', branch: "Computer Science",  company: "Company A", mobileNumber: "123-456-7890", year: 2025, times: 2,   },
+    { id: 4, TPOID : '0086', name: 'James Karl',collegeid: 'vu2f2122017', branch: "Computer Science",  company: "Company C", mobileNumber: "123-456-7890", year: 2025, times: 1,   },
+    { id: 5, TPOID : '0001', name: 'Jon Cena',collegeid: 'vu2f2122017', branch: "Computer Science",  company: "Company B", mobileNumber: "123-456-7890", year: 2024,  },
+];
+
+
   const companies = ["Company A", "Company B", "Company C"];
   const years = [2022, 2023, 2024];
   const times = [1, 2, 3, 4];
@@ -24,12 +27,7 @@ const App = () => {
         <div className="container mx-auto px-4">
           <nav className="py-4 ">
             <ul className="flex space-x-10">
-              <li>
-                <Link to="/" className="text-blue-500 hover:text-blue-700">
-                  Registered Students
-                </Link>
-              </li>
-              <li>
+            <li>
                 <Link
                   to="/companylist"
                   className="text-blue-500 hover:text-blue-700"
@@ -37,6 +35,12 @@ const App = () => {
                   Company List
                 </Link>
               </li>
+              <li>
+                <Link to="/" className="text-blue-500 hover:text-blue-700">
+                  Registered Students
+                </Link>
+              </li>
+              
               <li>
                 <Link
                   to="/students"

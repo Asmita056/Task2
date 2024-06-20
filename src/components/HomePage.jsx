@@ -49,11 +49,16 @@ const HomePage = ({ students, companies, years }) => {
         </button>
       )}
       <div className="overflow-x-auto">
-        <table className="min-w-full bg-white border-gray-200 shadow-md rounded-lg overflow-hidden">
+        <table className="min-w-full bg-white border-gray-200 shadow-md rounded-lg overflow-hidden m-auto">
           <thead className="bg-gray-100 text-gray-700 uppercase text-sm leading-normal">
             <tr>
+              <th className="py-3 px-6 text-left">Student ID</th>
+              <th className="py-3 px-6 text-left">TPO ID</th>
               <th className="py-3 px-6 text-left">Name</th>
+              <th className="py-3 px-6 text-left">College Id</th>
+              <th className="py-3 px-6 text-left">Branch</th>
               <th className="py-3 px-6 text-left">Company</th>
+              <th className="py-3 px-6 text-left">Mobile No.</th>
               <th className="py-3 px-6 text-left">Year</th>
               {showRoundTwoColumn && (
                 <th className="py-3 px-6 text-left">Select for Round 2</th>
@@ -66,11 +71,17 @@ const HomePage = ({ students, companies, years }) => {
                 key={student.id}
                 className="border-b border-gray-200 hover:bg-gray-100"
               >
+                <td className="py-3 px-6 text-left">{student.id}</td>
                 <td className="py-3 px-6 text-left whitespace-nowrap">
-                  {student.name}
+                  {student.TPOID}
                 </td>
+                <td className="py-3 px-6 text-left">{student.name}</td>
+                <td className="py-3 px-6 text-left">{student.collegeid}</td>
+                <td className="py-3 px-6 text-left">{student.branch}</td>
                 <td className="py-3 px-6 text-left">{student.company}</td>
+                <td className="py-3 px-6 text-left">{student.mobileNumber}</td>
                 <td className="py-3 px-6 text-left">{student.year}</td>
+                
                 {showRoundTwoColumn && (
                   <td className="py-3 px-6 text-left">
                     {isStudentAdded(student.id) ? (

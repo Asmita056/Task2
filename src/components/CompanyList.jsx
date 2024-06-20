@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-const CompanyList = ({ students, companies, years }) => {
+const CompanyList = ({ students, companies, years, times }) => {
   const [selectedCompany, setSelectedCompany] = useState("");
   const [selectedYear, setSelectedYear] = useState("");
   const [selectedTimes, setSelectedTimes] = useState("");
@@ -15,7 +15,7 @@ const CompanyList = ({ students, companies, years }) => {
 
   return (
     <div className="mt-8">
-      <h2 className="text-2xl font-bold mb-4">List of students</h2>
+      <h2 className="text-2xl font-bold mb-4">List of Students</h2>
 
       <div className="flex space-x-4 mb-4">
         <div className="w-1/3">
@@ -61,19 +61,20 @@ const CompanyList = ({ students, companies, years }) => {
               onChange={(e) => setSelectedTimes(e.target.value)}
             >
               <option value="">All</option>
-              <option value="1">1</option>
-              <option value="2">2</option>
-              <option value="3">3</option>
-              <option value="4">4</option>
+              {times.map((time) => (
+                <option key={time} value={time}>
+                  {time}
+                </option>
+              ))}
             </select>
           </label>
         </div>
       </div>
+
       <div className="overflow-x-auto">
         <table className="min-w-full bg-white border-gray-200 shadow-md rounded-lg overflow-hidden">
           <thead className="bg-gray-100 text-gray-700 uppercase text-sm leading-normal">
             <tr>
-              {/* <th className="py-3 px-6 text-left">Name</th> */}
               <th className="py-3 px-6 text-left">Company</th>
               <th className="py-3 px-6 text-left">Year</th>
               <th className="py-3 px-6 text-left">Times Visited</th>
@@ -85,9 +86,6 @@ const CompanyList = ({ students, companies, years }) => {
                 key={student.id}
                 className="border-b border-gray-200 hover:bg-gray-100"
               >
-                {/* <td className="py-3 px-6 text-left whitespace-nowrap">
-                  {student.name}
-                </td> */}
                 <td className="py-3 px-6 text-left">{student.company}</td>
                 <td className="py-3 px-6 text-left">{student.year}</td>
                 <td className="py-3 px-6 text-left">{student.times}</td>
