@@ -9,7 +9,7 @@ import { SelectedStudentsProvider } from "./components/SelectedStudentsContext";
 const App = () => {
   const students = [
     { id: 1, name: "John Doe", company: "Company A", year: 2023, times: 1 },
-    { id: 2, name: "Jane Smith", company: "Company B", year: 2022, times: 2 },
+    { id: 2, name: "Jane Smith", company: "Company A", year: 2022, times: 2 },
   ];
   const companies = ["Company A", "Company B", "Company C"];
   const years = [2022, 2023, 2024];
@@ -18,11 +18,11 @@ const App = () => {
     <SelectedStudentsProvider>
       <Router>
         <div className="container mx-auto px-4">
-          <nav className="py-4">
-            <ul className="flex space-x-4">
+          <nav className="py-4 ">
+            <ul className="flex space-x-10">
               <li>
                 <Link to="/" className="text-blue-500 hover:text-blue-700">
-                  Home
+                  Registered Students
                 </Link>
               </li>
               <li>
@@ -30,7 +30,7 @@ const App = () => {
                   to="/students"
                   className="text-blue-500 hover:text-blue-700"
                 >
-                  Students
+                  Students Round 2
                 </Link>
               </li>
             </ul>

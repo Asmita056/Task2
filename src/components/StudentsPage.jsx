@@ -1,6 +1,5 @@
 // StudentsPage.js
 import React from "react";
-// import useSelectedStudents from "./SelectedStudentsContext";
 import { useSelectedStudents } from "./SelectedStudentsContext";
 
 const StudentsPage = () => {
@@ -8,7 +7,7 @@ const StudentsPage = () => {
 
   return (
     <div className="mt-8">
-      <h2 className="text-2xl font-bold mb-4">All Registered Students</h2>
+      <h2 className="text-2xl font-bold mb-4">Students Selected For Round 2</h2>
       <div className="overflow-x-auto">
         <table className="min-w-full bg-white border-gray-200 shadow-md rounded-lg overflow-hidden">
           <thead className="bg-gray-100 text-gray-700 uppercase text-sm leading-normal">
