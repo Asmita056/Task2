@@ -3,7 +3,7 @@ import { useSelectedStudents } from "./SelectedStudentsContext";
 
 const HomePage = ({ students, companies, years }) => {
   const [showRoundTwoColumn, setShowRoundTwoColumn] = useState(false);
-  const { addStudents, selectedStudents } = useSelectedStudents(); // Assuming selectedStudents from context
+  const { addStudents, selectedStudents } = useSelectedStudents();
   const [selectedStudentIds, setSelectedStudentIds] = useState([]);
 
   const toggleRoundTwoColumn = () => {
@@ -26,7 +26,6 @@ const HomePage = ({ students, companies, years }) => {
     );
   };
 
-  // Function to check if a student has already been added to Round Two
   const isStudentAdded = (studentId) => {
     return selectedStudents.some((student) => student.id === studentId);
   };
@@ -95,7 +94,3 @@ const HomePage = ({ students, companies, years }) => {
 };
 
 export default HomePage;
-
-
-
-

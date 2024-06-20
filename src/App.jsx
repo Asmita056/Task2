@@ -1,18 +1,22 @@
 import React from "react";
 import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
 import HomePage from "./components/HomePage";
+import CompanyList from "./components/CompanyList";
 import StudentsPage from "./components/StudentsPage";
 import "./index.css";
-// import SelectedStudentsProvider from "./components/SelectedStudentsContext";
 import { SelectedStudentsProvider } from "./components/SelectedStudentsContext";
 
 const App = () => {
   const students = [
-    { id: 1, name: "John Doe", company: "Company A", year: 2023, times: 1 },
-    { id: 2, name: "Jane Smith", company: "Company A", year: 2022, times: 2 },
+    { id: 1, company: "Company A", year: 2023, times: 1 },
+    { id: 2, company: "Company A", year: 2022, times: 2 },
+    { id: 3, company: "Company B", year: 2024, times: 3 },
+    { id: 4, company: "Company C", year: 2022, times: 2 },
+    { id: 5, company: "Company B", year: 2021, times: 4 },
   ];
   const companies = ["Company A", "Company B", "Company C"];
   const years = [2022, 2023, 2024];
+  const times = [1, 2, 3, 4];
 
   return (
     <SelectedStudentsProvider>
@@ -23,6 +27,14 @@ const App = () => {
               <li>
                 <Link to="/" className="text-blue-500 hover:text-blue-700">
                   Registered Students
+                </Link>
+              </li>
+              <li>
+                <Link
+                  to="/companylist"
+                  className="text-blue-500 hover:text-blue-700"
+                >
+                  Company List
                 </Link>
               </li>
               <li>
@@ -45,6 +57,17 @@ const App = () => {
                   students={students}
                   companies={companies}
                   years={years}
+                />
+              }
+            />
+            <Route
+              path="/companylist"
+              element={
+                <CompanyList
+                  companies={companies}
+                  years={years}
+                  times={times}
+                  students={students}
                 />
               }
             />
