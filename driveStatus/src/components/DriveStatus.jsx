@@ -27,47 +27,61 @@ const DriveStatus = () => {
   return (
     <div>
       <div className=" flex m-3">
-        <button
-          onClick={toggleDropdown}
-          className="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-700 text-lg "
-        >
-          {selectedCompany || "Select the Company"}
-        </button>
-        {isOpen && (
-          <ul className="">
-            {companynames.map((companyname) => (
-              <li
-                key={companyname}
-                onClick={() => handleCompanyClick(companyname)}
-                className="cursor:pointer"
-              >
-                {companyname}
-              </li>
-            ))}
-          </ul>
-        )}
-        <div>
+        <div className="m-3">
           <label
-            htmlFor="academicYear"
+            htmlFor="companyName"
+            className="block text-sm font-medium text-gray-700"
+          >
+            Company Name
+          </label>
+          <select
+            id="companyName"
+            name="companyName"
+            onChange={handleChange}
+            className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2"
+          >
+            <option value="">Select Company Name</option>
+            <option value="Godrej">Godrej</option>
+            <option value="TCS">TCS</option>
+            <option value="Amazon">Amazon</option>
+            <option value="Flipkart">Flipkart</option>
+          </select>
+          {/* <select className="flex-1 p-2 border rounded"
+         onChange={(e) => setSearchQuery(e.target.value)}
+        >
+          <option>Select the Company</option>
+          {companies.map((data,i)=>(
+            <option key={i}>{data.company_name}</option>
+          ))}
+        </select> */}
+        </div>
+        <div className="m-3">
+          <label
+            htmlFor="Year"
             className="block text-sm font-medium text-gray-700"
           >
             Academic Year
           </label>
           <select
-            id="academicYear"
-            name="academicYear"
+            id="Year"
+            name="Year"
             onChange={handleChange}
             className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2"
           >
             <option value="">Select Year</option>
-            <option value="FE">FE</option>
-            <option value="SE">SE</option>
-            <option value="TE">TE</option>
-            <option value="BE">BE</option>
+            <option value="2018">2018</option>
+            <option value="2019">2019</option>
+            <option value="2020">2020</option>
+            <option value="2021">2021</option>
+            <option value="2022">2022</option>
+            <option value="2023">2023</option>
+            <option value="2024">2024</option>
+            <option value="2025">2025</option>
+            <option value="2026">2026</option>
           </select>
         </div>
 
-        <div>
+        <div className="m-3">
           <label
             htmlFor="timesVisited"
             className="block text-sm font-medium text-gray-700"
