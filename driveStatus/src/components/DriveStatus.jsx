@@ -1,33 +1,44 @@
-import React, { useState } from "react";
-import RegistrationDetails from "./RegistrationDetails";
+import React, { useState } from 'react';
+import RegistrationDetails from './RegistrationDetails';
+import RoundTwoDetails from './RoundTwoDetails';
 
 const DriveStatus = () => {
-  const [isOpen, setIsOpen] = useState(false);
-  const [selectedCompany, setSelectedCompany] = useState(null);
-
-  const companynames = ["Godrej", "TCS", "Infosys"];
-
-  const toggleDropdown = () => {
-    setIsOpen(!isOpen);
-  };
-
-  const handleCompanyClick = (company) => {
-    setSelectedCompany(company);
-    setIsOpen(false);
-  };
+  const [formData, setFormData] = useState({
+    companyName: '',
+    Year: '',
+    timesVisited: '',
+  });
+  const [viewRoundTwo, setViewRoundTwo] = useState(false);
+  const [selectedStudents, setSelectedStudents] = useState([]);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    if (name === "contactNo" && !/^\d*$/.test(value)) {
+    if (name === 'contactNo' && !/^\d*$/.test(value)) {
       return;
     }
     setFormData({ ...formData, [name]: value });
   };
 
+  const handleStudentSelection = (student) => {
+    if (selectedStudents.includes(student)) {
+      setSelectedStudents(selectedStudents.filter((s) => s !== student));
+    } else {
+      setSelectedStudents([...selectedStudents, student]);
+    }
+  };
+
+  const handleViewRoundTwo = () => {
+    setViewRoundTwo(true);
+  };
+
+  const handleBackToRoundOne = () => {
+    setViewRoundTwo(false);
+  };
+
   return (
-    <div>
-      <div className=" flex m-3">
-        <div className="m-3">
+    <div className="p-4">
+      <div className="flex flex-wrap justify-around m-3">
+        <div className="m-3 w-full md:w-1/4">
           <label
             htmlFor="companyName"
             className="block text-sm font-medium text-gray-700"
@@ -46,16 +57,8 @@ const DriveStatus = () => {
             <option value="Amazon">Amazon</option>
             <option value="Flipkart">Flipkart</option>
           </select>
-          {/* <select className="flex-1 p-2 border rounded"
-         onChange={(e) => setSearchQuery(e.target.value)}
-        >
-          <option>Select the Company</option>
-          {companies.map((data,i)=>(
-            <option key={i}>{data.company_name}</option>
-          ))}
-        </select> */}
         </div>
-        <div className="m-3">
+        <div className="m-3 w-full md:w-1/4">
           <label
             htmlFor="Year"
             className="block text-sm font-medium text-gray-700"
@@ -81,7 +84,7 @@ const DriveStatus = () => {
           </select>
         </div>
 
-        <div className="m-3">
+        <div className="m-3 w-full md:w-1/4">
           <label
             htmlFor="timesVisited"
             className="block text-sm font-medium text-gray-700"
@@ -102,7 +105,22 @@ const DriveStatus = () => {
           </select>
         </div>
       </div>
-      <RegistrationDetails />
+      {viewRoundTwo ? (
+        <RoundTwoDetails
+          selectedStudents={selectedStudents}
+          handleBackToRoundOne={handleBackToRoundOne}
+        />
+      ) : (
+        <>
+          <RegistrationDetails handleStudentSelection={handleStudentSelection} />
+          <button
+            onClick={handleViewRoundTwo}
+            className="mt-4 p-2 bg-blue-500 text-white rounded hover:bg-blue-600"
+          >
+            View Round 2
+          </button>
+        </>
+      )}
     </div>
   );
 };
