@@ -1,22 +1,22 @@
-import React from 'react';
+import React from "react";
 
 export default function RegistrationDetails({ handleStudentSelection }) {
   const students = [
     {
       srNo: 1,
-      tpoId: 'TPO001',
-      branch: 'CSE',
-      clgId: 'CLG001',
-      name: 'John Doe',
-      contact: '1234567890',
+      tpoId: "TPO001",
+      branch: "CSE",
+      clgId: "CLG001",
+      name: "John Doe",
+      contact: "1234567890",
     },
     {
       srNo: 2,
-      tpoId: 'TPO002',
-      branch: 'ECE',
-      clgId: 'CLG002',
-      name: 'Jane Smith',
-      contact: '0987654321',
+      tpoId: "TPO002",
+      branch: "ECE",
+      clgId: "CLG002",
+      name: "Jane Smith",
+      contact: "0987654321",
     },
     // Add more student objects as needed
   ];
@@ -34,7 +34,7 @@ export default function RegistrationDetails({ handleStudentSelection }) {
               <th className="px-4 py-2 border-b">College ID</th>
               <th className="px-4 py-2 border-b">Name of Student</th>
               <th className="px-4 py-2 border-b">Contact No</th>
-              <th className="px-4 py-2 border-b">Select for Round 2</th>
+              {/* <th className="px-4 py-2 border-b">Select for Round 2</th> */}
             </tr>
           </thead>
           <tbody>
@@ -47,11 +47,11 @@ export default function RegistrationDetails({ handleStudentSelection }) {
                 <td className="px-4 py-2 border-b">{student.name}</td>
                 <td className="px-4 py-2 border-b">{student.contact}</td>
                 <td className="px-4 py-2 border-b text-center">
-                  <input
+                  {/* <input
                     type="checkbox"
                     className="form-checkbox h-4 w-4 text-blue-600"
                     onChange={() => handleStudentSelection(student)}
-                  />
+                  /> */}
                 </td>
               </tr>
             ))}

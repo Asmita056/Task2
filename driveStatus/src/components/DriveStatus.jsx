@@ -1,19 +1,19 @@
-import React, { useState } from 'react';
-import RegistrationDetails from './RegistrationDetails';
-import RoundTwoDetails from './RoundTwoDetails';
+import React, { useState } from "react";
+import RegistrationDetails from "./RegistrationDetails";
+import RoundTwoDetails from "./RoundTwoDetails";
 
 const DriveStatus = () => {
   const [formData, setFormData] = useState({
-    companyName: '',
-    Year: '',
-    timesVisited: '',
+    companyName: "",
+    Year: "",
+    timesVisited: "",
   });
   const [viewRoundTwo, setViewRoundTwo] = useState(false);
   const [selectedStudents, setSelectedStudents] = useState([]);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    if (name === 'contactNo' && !/^\d*$/.test(value)) {
+    if (name === "contactNo" && !/^\d*$/.test(value)) {
       return;
     }
     setFormData({ ...formData, [name]: value });
@@ -112,7 +112,9 @@ const DriveStatus = () => {
         />
       ) : (
         <>
-          <RegistrationDetails handleStudentSelection={handleStudentSelection} />
+          <RegistrationDetails
+            handleStudentSelection={handleStudentSelection}
+          />
           <button
             onClick={handleViewRoundTwo}
             className="mt-4 p-2 bg-blue-500 text-white rounded hover:bg-blue-600"

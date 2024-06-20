@@ -1,9 +1,11 @@
-import React from 'react';
+import React from "react";
 
 const RoundTwoDetails = ({ selectedStudents, handleBackToRoundOne }) => {
   return (
     <>
-      <h1 className="text-xl font-bold mb-4">List of Students Eligible for Round 2</h1>
+      <h1 className="text-xl font-bold mb-4">
+        List of Students Eligible for Round 2
+      </h1>
       <div className="overflow-x-auto">
         <table className="min-w-full bg-white border border-gray-300">
           <thead>
@@ -14,6 +16,7 @@ const RoundTwoDetails = ({ selectedStudents, handleBackToRoundOne }) => {
               <th className="px-4 py-2 border-b">College ID</th>
               <th className="px-4 py-2 border-b">Name of Student</th>
               <th className="px-4 py-2 border-b">Contact No</th>
+              <th className="px-4 py-2 border-b">Select for Round 2</th>
             </tr>
           </thead>
           <tbody>
@@ -25,6 +28,11 @@ const RoundTwoDetails = ({ selectedStudents, handleBackToRoundOne }) => {
                 <td className="px-4 py-2 border-b">{student.clgId}</td>
                 <td className="px-4 py-2 border-b">{student.name}</td>
                 <td className="px-4 py-2 border-b">{student.contact}</td>
+                <input
+                  type="checkbox"
+                  className="form-checkbox h-4 w-4 text-blue-600"
+                  onChange={() => handleStudentSelection(student)}
+                />
               </tr>
             ))}
           </tbody>
